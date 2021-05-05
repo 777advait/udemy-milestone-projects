@@ -4,10 +4,10 @@ from rich.console import Console # to format coloured text on command line
 console = Console()
 
 suits = [
-	'♡',
-	'♢',
-	'♤',
-	'♧'
+    '[red]:heart:[/]',
+    '[red]:diamonds:[/]',
+    '[white]:clubs:[/]',
+    '[white]:spades:[/]'
 ]
 ranks = [
 	'2',
@@ -139,7 +139,7 @@ def show_some(player, dealer): # shows some cards of dealer and all cards of pla
 		lines = ['┌───────┐',
 				f'| {card.rank:6}|',
 				'|       |',
-				f'|   {card.suit:4}|',
+				f'|   {card.suit:4}   |',
 				'|       |',
 				f'|     {card.rank:2}|',
 				'└───────┘']
@@ -148,7 +148,7 @@ def show_some(player, dealer): # shows some cards of dealer and all cards of pla
 
 	zipped = zip(*all_cards)
 	for tup in zipped:
-		print(*tup)
+		console.print(*tup)
 
 	# Player's Hand
 	console.print("[bold green]Player's[/] cards:")
@@ -158,7 +158,7 @@ def show_some(player, dealer): # shows some cards of dealer and all cards of pla
 		lines = ['┌───────┐',
 				f'| {card.rank:6}|',
 				'|       |',
-				f'|   {card.suit:4}|',
+				f'|   {card.suit:4}   |',
 				'|       |',
 				f'|     {card.rank:2}|',
 				'└───────┘']
@@ -166,7 +166,7 @@ def show_some(player, dealer): # shows some cards of dealer and all cards of pla
 
 	zipped = zip(*all_cards)
 	for tup in zipped:
-		print(*tup)
+		console.print(*tup)
 
 def show_all(player, dealer): # shows all the cards of player and the dealer
 	# Dealer's hand
@@ -177,7 +177,7 @@ def show_all(player, dealer): # shows all the cards of player and the dealer
 		lines = ['┌───────┐',
 				f'| {card.rank:6}|',
 				'|       |',
-				f'|   {card.suit:4}|',
+				f'|   {card.suit:4}   |',
 				'|       |',
 				f'|     {card.rank:2}|',
 				'└───────┘']
@@ -185,7 +185,7 @@ def show_all(player, dealer): # shows all the cards of player and the dealer
 
 	zipped = zip(*all_cards)
 	for tup in zipped:
-		print(*tup)
+		console.print(*tup)
 
 	# Player's Hand
 	console.print("[bold green]Player's[/] cards:")
@@ -195,7 +195,7 @@ def show_all(player, dealer): # shows all the cards of player and the dealer
 		lines = ['┌───────┐',
 				f'| {card.rank:6}|',
 				'|       |',
-				f'|   {card.suit:4}|',
+				f'|   {card.suit:4}   |',
 				'|       |',
 				f'|     {card.rank:2}|',
 				'└───────┘']
@@ -203,7 +203,7 @@ def show_all(player, dealer): # shows all the cards of player and the dealer
 
 	zipped = zip(*all_cards)
 	for tup in zipped:
-		print(*tup)
+		console.print(*tup)
 
 # funcs to declare win/lose
 def player_busts(player,dealer,chips):
