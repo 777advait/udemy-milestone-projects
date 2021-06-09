@@ -1,5 +1,6 @@
 from random import shuffle # to shuffle the deck
 from rich.console import Console # to format coloured text on command line
+from PyInquirer import prompt # for Command Line Interaction/Interface (CLI)
 
 console = Console()
 
@@ -96,7 +97,7 @@ def take_bet(chips): # prompt the player for their bet
 	while True:
 		try:
 			chips.bet = int(console.input(
-				f'\n[bold]How many chips would you like to bet?(Total Chips :point_right: - {chips.total_chips})[/]: '
+				f'\n[bold]How many chips would you like to bet?[/]: '
 				))
 		except ValueError:
 			console.print('Sorry, your bet should be an [bold underline violet]integer[/].')
@@ -114,9 +115,20 @@ def hit_or_stand(deck, player): # asks the player whether to hit_or_stand()
 	global playing
 
 	while True:
-		x = console.input(
-			'Would you like to [bold underline]HIT[/] or [bold underline]STAND[/]? Enter H or S: '
-			)
+		x = 'Would you like to HIT or STAND?'
+		
+		question = [
+			{
+				'type':'list',
+				'name':'x',
+				'message':x,
+				'choices':[
+					'HIT!',
+					'STAND!'
+				]
+			}
+		]
+		answer = prompt(question)
 
 		if x[0].lower() == 'h':
 			hit(deck, player)
@@ -225,11 +237,6 @@ def dealer_wins(player,dealer,chips):
 def push(player,dealer):
 	console.print("[bold][green]Dealer[/] and [green]Player[/] tie! It's a [blue]PUSH[/].[/]")
 
-def replay():
-	return console.input(
-		"\n[bold magenta]Wanna play another hand?[/] Enter [bold blue]Y[/] or [bold blue]N[/]: "
-		).lower().startswith("y")
-
 # Set up the Player's chips
 player_chips = Chips()  # remember the default value is 100 
 
@@ -304,10 +311,23 @@ while True:
 	console.print(f"\nPlayer's total chips are at [bold turquoise]{player_chips.total_chips}[/]")
     
 	# Ask to play again
-	user_choice = replay()
-	if  user_choice== True:
+	replay = [
+		{
+			'type':'list',
+			'name':'replay_choice',
+			'message':'Wanna play another hand?',
+			'choices':[
+				'YEP! I am a TRUE GAMBLER',
+				'NO! I suck at GAMBLING'
+			]
+		}
+	]
+
+	answer = prompt(replay)
+	if answer["replay_choice"] == 'YEP! I am a TRUE GAMBLER':
+		print('\n'*100)
 		playing = True
-    
-	elif not user_choice:
+	
+	else:
 		console.print('Thanks for playing!', style = 'bold purple')
 		break
