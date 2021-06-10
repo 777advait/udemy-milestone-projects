@@ -4,6 +4,7 @@ from PyInquirer import prompt # for Command Line Interaction/Interface (CLI)
 
 console = Console()
 
+# special syntax is being used here to format coloured suit symbols
 suits = [
     '[red]:heart:[/]',
     '[red]:diamonds:[/]',
@@ -130,15 +131,11 @@ def hit_or_stand(deck, player): # asks the player whether to hit_or_stand()
 		]
 		answer = prompt(question)
 
-		if x[0].lower() == 'h':
+		if answer["x"] == 'HIT!':
 			hit(deck, player)
-		elif x[0].lower() == 's':
+		elif answer["x"] == 'STAND!':
 			console.print('[bold green]Player decides to stand[/]. Dealer is playing...')
 			playing = False
-
-		else:
-			console.print('Sorry! Please try again.', style = 'bold red')
-			continue
 		
 		break
 
