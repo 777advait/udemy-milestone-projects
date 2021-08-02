@@ -37,14 +37,14 @@ values = {
 	'9':9,
 	'10':10,
 	'J':10,
-    'Q':10,
+    	'Q':10,
 	'K':10,
 	'A':11
 }
 playing = True
 
 
-# classses for gameplay
+# classes for gameplay
 class Card():
 	def __init__(self, suit, rank):
 		self.suit = suit
@@ -61,7 +61,7 @@ class Deck():
 	def shuffle_deck(self): # shuffles the deck
 		shuffle(self.deck)
 
-	def deal_card(self): # removes a card fro deck
+	def deal_card(self): # removes a card from deck
 		return self.deck.pop()
 
 class Player():
@@ -248,7 +248,7 @@ while True:
 	console.print('[bold]Welcome to BlackJack! Get as close to [blue]21[/] as you can without going over!\n\
 	Dealer hits until she reaches [blue]17[/]. Aces count as [blue]1[/] or [blue]11[/].[/]')
     
-    # Create & shuffle the deck, deal two cards to each player
+    	# Create & shuffle the deck, deal two cards to each player
 	deck = Deck()
 	deck.shuffle_deck()
 
@@ -262,10 +262,10 @@ while True:
 		dealer_hand.add_card(deck.deal_card())
 
     
-    # Prompt the Player for their bet
+    	# Prompt the Player for their bet
 	take_bet(player_chips)
     
-    # Show cards (but keep one dealer card hidden)
+    	# Show cards (but keep one dealer card hidden)
 	show_some(player_hand,dealer_hand)
     
 	while playing:
